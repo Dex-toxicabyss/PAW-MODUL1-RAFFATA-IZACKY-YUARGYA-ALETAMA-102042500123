@@ -36,3 +36,29 @@ Open [http://localhost:8000/PAW_MODUL-1_RAFFATA%20IZACKY%20YUARGYA%20ALETAMA_102
 ## Scope
 
 This is a focused academic exercise for practicing native PHP and web-page styling. It is not intended to represent a production e-commerce platform with a database, authentication, payment processing, or order management.
+## Portfolio evidence
+
+### Demonstrated skills
+
+- Native PHP page rendering
+- HTML structure and content organization
+- CSS stylesheet separation
+- Local development with PHP's built-in server
+
+### Validation
+
+Run the local server and confirm that the storefront page loads from the repository path:
+
+```bash
+php -S localhost:8000 -t .
+```
+
+### Limitations
+
+- No database or persistent product catalog
+- No authentication, cart, checkout, or payment integration
+- Intended as a PAW Modul 1 academic exercise
+
+## Usage policy
+
+No open-source license is included. This repository is published for portfolio and academic reference; reuse should be requested from the author.
