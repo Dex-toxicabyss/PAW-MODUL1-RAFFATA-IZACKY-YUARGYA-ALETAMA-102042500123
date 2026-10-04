@@ -20,6 +20,8 @@ A collection of native PHP practical projects for **Pemrograman Aplikasi Web (PA
 - Responsive LabPass interface and print-ready card layout
 - Campus background image and Enterprise Application Development logo stored in `images/`
 
+The client-side behavior uses **Vanilla JavaScript** only: input/change event listeners update the form-readiness indicator and motivation character counter, while `window.print()` supports registration-card printing. No JavaScript framework or library is used.
+
 ## Technology
 
 - PHP Native
