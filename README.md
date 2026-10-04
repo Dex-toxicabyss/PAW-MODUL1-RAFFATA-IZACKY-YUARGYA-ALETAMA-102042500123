@@ -44,7 +44,8 @@ PAW-MODUL1-RAFFATA-IZACKY-YUARGYA-ALETAMA-102042500123/
 │   └── images/
 │       ├── bg-campus.png
 │       └── logo.png
-└── README.md
+├── README.md
+└── LICENSE
 ```
 
 ## Run locally
@@ -76,6 +77,6 @@ These projects are academic exercises for practicing PHP request handling, form 
 **Raffata Izacky Yuargya Aletama**
 NIM: `102042500123`
 
-## Usage policy
+## License
 
-No open-source license is included. This repository is published for academic and portfolio reference; reuse or redistribution should be requested from the author.
+This project is licensed under the [Apache License 2.0](LICENSE). You may use, modify, and redistribute the code under the license terms, including retaining the copyright and license notices.
