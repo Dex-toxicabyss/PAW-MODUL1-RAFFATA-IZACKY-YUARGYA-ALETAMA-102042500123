@@ -18,7 +18,7 @@ A small native PHP storefront built for a **Pemrograman Aplikasi Web (PAW) Modul
 ## Repository structure
 
 ```text
-PAW_JURNAL-1_RAFFATA_102042500123/
+PAW_MODUL-1_RAFFATA IZACKY YUARGYA ALETAMA_102042500123/PAW_JURNAL-1_RAFFATA_102042500123/
 ├── index.php    # Main storefront page
 └── style.css    # Page styling
 ```
