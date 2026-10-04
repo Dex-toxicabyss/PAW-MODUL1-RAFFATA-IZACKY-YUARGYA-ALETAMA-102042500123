@@ -1,64 +1,81 @@
-# TechStore — PAW Modul 1
+# PAW Practical Projects
 
-A small native PHP storefront built for a **Pemrograman Aplikasi Web (PAW) Modul 1** practical assignment. The project uses plain PHP, HTML, and CSS to demonstrate a simple product-catalog experience without a framework or external dependency.
+A collection of native PHP practical projects for **Pemrograman Aplikasi Web (PAW)**. The repository keeps Modul 1 and Jurnal 1 as separate sibling folders so each submission can be opened and run independently.
 
-## What this project demonstrates
+## Projects
 
-- A PHP entry point that renders the storefront page
-- Product-oriented page content for a simple tech-store concept
-- Separate stylesheet organization in `style.css`
-- A lightweight setup that can run on a local PHP server
+| Project | Description | Main files |
+|---|---|---|
+| `PAW_MODUL-1_RAFFATA IZACKY YUARGYA ALETAMA_102042500123` | LabPass registration console for prospective practicum assistants. | `index.php`, `style.css`, `images/` |
+| `PAW_JURNAL-1_RAFFATA_102042500123` | Jurnal 1 assistant-practicum registration system with PHP validation, session storage, and a generated registration card. | `index.php`, `style.css`, `images/` |
 
-## Tech stack
+## Jurnal 1 features
+
+- Native PHP form handling with `POST`
+- Session-based storage through `$_SESSION['data_pendaftar']`
+- Registration form and `?page=id_card` display mode
+- Validation for name, WhatsApp number, institutional email, course selection, and motivation
+- Retained input values after validation errors
+- Registration-card output with escaped user data
+- Responsive LabPass interface and print-ready card layout
+- Campus background image and Enterprise Application Development logo stored in `images/`
+
+## Technology
 
 - PHP Native
-- HTML
-- CSS
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- PHP session handling
+
+No framework, database, authentication service, payment system, or external API is required.
 
 ## Repository structure
 
 ```text
-PAW_JURNAL-1_RAFFATA_102042500123/
-├── index.php    # Main storefront page
-└── style.css    # Page styling
+PAW-MODUL1-RAFFATA-IZACKY-YUARGYA-ALETAMA-102042500123/
+├── PAW_MODUL-1_RAFFATA IZACKY YUARGYA ALETAMA_102042500123/
+│   ├── index.php
+│   ├── style.css
+│   └── images/
+├── PAW_JURNAL-1_RAFFATA_102042500123/
+│   ├── index.php
+│   ├── style.css
+│   └── images/
+│       ├── bg-campus.png
+│       └── logo.png
+└── README.md
 ```
 
 ## Run locally
 
-Make sure PHP is installed, then run the built-in development server from the repository root:
+From the repository root, start PHP's built-in server:
 
 ```bash
 php -S localhost:8000 -t .
 ```
 
-Open [http://localhost:8000/PAW_MODUL-1_RAFFATA%20IZACKY%20YUARGYA%20ALETAMA_102042500123/](http://localhost:8000/PAW_MODUL-1_RAFFATA%20IZACKY%20YUARGYA%20ALETAMA_102042500123/) in a browser.
+Open either project:
 
-## Scope
+- [Modul 1](http://localhost:8000/PAW_MODUL-1_RAFFATA%20IZACKY%20YUARGYA%20ALETAMA_102042500123/)
+- [Jurnal 1](http://localhost:8000/PAW_JURNAL-1_RAFFATA_102042500123/)
 
-This is a focused academic exercise for practicing native PHP and web-page styling. It is not intended to represent a production e-commerce platform with a database, authentication, payment processing, or order management.
-## Portfolio evidence
-
-### Demonstrated skills
-
-- Native PHP page rendering
-- HTML structure and content organization
-- CSS stylesheet separation
-- Local development with PHP's built-in server
-
-### Validation
-
-Run the local server and confirm that the storefront page loads from the repository path:
+To lint the PHP files:
 
 ```bash
-php -S localhost:8000 -t .
+php -l "PAW_MODUL-1_RAFFATA IZACKY YUARGYA ALETAMA_102042500123/index.php"
+php -l PAW_JURNAL-1_RAFFATA_102042500123/index.php
 ```
 
-### Limitations
+## Academic scope
 
-- No database or persistent product catalog
-- No authentication, cart, checkout, or payment integration
-- Intended as a PAW Modul 1 academic exercise
+These projects are academic exercises for practicing PHP request handling, form validation, sessions, HTML structure, CSS styling, and basic client-side interaction. They are not intended to represent production systems.
+
+## Author
+
+**Raffata Izacky Yuargya Aletama**
+NIM: `102042500123`
 
 ## Usage policy
 
-No open-source license is included. This repository is published for portfolio and academic reference; reuse should be requested from the author.
+No open-source license is included. This repository is published for academic and portfolio reference; reuse or redistribution should be requested from the author.
