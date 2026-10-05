@@ -1,251 +1,161 @@
 <?php
-$subjects = [
-    'Pengembangan Aplikasi Web',
-    'Enterprise Systems',
-    'Basis Data',
-    'Pemrograman Berorientasi Objek',
+$products = [
+    [
+        'nama' => 'Keyboard Mechanical RGB',
+        'kategori' => 'Aksesori Komputer',
+        'harga' => 485000,
+        'stok' => 12,
+        'kode' => 'KB-001',
+        'aksen' => 'mint',
+    ],
+    [
+        'nama' => 'Mouse Wireless Ergonomis',
+        'kategori' => 'Aksesori Komputer',
+        'harga' => 275000,
+        'stok' => 8,
+        'kode' => 'MS-002',
+        'aksen' => 'blue',
+    ],
+    [
+        'nama' => 'Headset Noise Cancelling',
+        'kategori' => 'Audio',
+        'harga' => 695000,
+        'stok' => 5,
+        'kode' => 'HS-003',
+        'aksen' => 'violet',
+    ],
+    [
+        'nama' => 'Webcam Full HD 1080p',
+        'kategori' => 'Perangkat Streaming',
+        'harga' => 550000,
+        'stok' => 0,
+        'kode' => 'WC-004',
+        'aksen' => 'coral',
+    ],
+    [
+        'nama' => 'USB-C Hub 6-in-1',
+        'kategori' => 'Konektivitas',
+        'harga' => 329000,
+        'stok' => 17,
+        'kode' => 'HB-005',
+        'aksen' => 'orange',
+    ],
+    [
+        'nama' => 'Laptop Stand Aluminium',
+        'kategori' => 'Workspace',
+        'harga' => 399000,
+        'stok' => 0,
+        'kode' => 'LS-006',
+        'aksen' => 'dark',
+    ],
 ];
-
-$values = [
-    'nama' => trim($_POST['nama'] ?? ''),
-    'nim' => trim($_POST['nim'] ?? ''),
-    'whatsapp' => trim($_POST['whatsapp'] ?? ''),
-    'email' => trim($_POST['email'] ?? ''),
-    'matkul' => trim($_POST['matkul'] ?? ''),
-    'motivasi' => trim($_POST['motivasi'] ?? ''),
-];
-
-$errors = [];
-$submitted = $_SERVER['REQUEST_METHOD'] === 'POST';
-$success = false;
-
-if ($submitted) {
-    if ($values['nama'] === '') {
-        $errors['nama'] = 'Nama lengkap wajib diisi.';
-    } elseif (strlen($values['nama']) < 3) {
-        $errors['nama'] = 'Nama minimal terdiri dari 3 karakter.';
-    }
-
-    if ($values['nim'] === '') {
-        $errors['nim'] = 'NIM wajib diisi.';
-    } elseif (!preg_match('/^\d{8,15}$/', $values['nim'])) {
-        $errors['nim'] = 'NIM harus berupa 8–15 angka.';
-    }
-
-    if ($values['whatsapp'] === '') {
-        $errors['whatsapp'] = 'Nomor WhatsApp wajib diisi.';
-    } elseif (!preg_match('/^(0|62)[0-9]{8,14}$/', preg_replace('/[\s\-]+/', '', $values['whatsapp']))) {
-        $errors['whatsapp'] = 'Gunakan format yang dimulai dengan 0 atau 62.';
-    }
-
-    if ($values['email'] === '') {
-        $errors['email'] = 'Email institusi wajib diisi.';
-    } elseif (!filter_var($values['email'], FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = 'Masukkan alamat email yang valid.';
-    }
-
-    if (!in_array($values['matkul'], $subjects, true)) {
-        $errors['matkul'] = 'Pilih mata kuliah praktikum.';
-    }
-
-    if ($values['motivasi'] === '') {
-        $errors['motivasi'] = 'Motivasi wajib diisi.';
-    } elseif (strlen($values['motivasi']) < 20) {
-        $errors['motivasi'] = 'Motivasi minimal terdiri dari 20 karakter.';
-    }
-
-    $success = count($errors) === 0;
-}
 
 function e(string $value): string
 {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
 
-function old(string $key, array $values): string
+function rupiah(int $amount): string
 {
-    return e($values[$key] ?? '');
+    return 'Rp ' . number_format($amount, 0, ',', '.');
 }
+
+$totalProducts = count($products);
+$totalStock = array_sum(array_column($products, 'stok'));
+$availableProducts = count(array_filter($products, static fn (array $product): bool => $product['stok'] > 0));
 ?>
 <!doctype html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LabPass — pendaftaran asisten praktikum berbasis PHP.">
-    <title>LabPass — Pendaftaran Asisten Praktikum</title>
+    <meta name="description" content="Cia Store — katalog perangkat dan aksesori teknologi berbasis PHP Native.">
+    <title>Cia Store — Katalog Teknologi</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="ambient ambient-one" aria-hidden="true"></div>
-    <div class="ambient ambient-two" aria-hidden="true"></div>
-
-    <header class="topbar">
-        <a class="wordmark" href="#top" aria-label="LabPass home">
-            <span class="wordmark-mark">LP</span>
-            <span>LabPass<span class="wordmark-dot">.</span></span>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+        <a class="brand" href="#top" aria-label="Cia Store home">
+            <span class="brand-mark">C</span>
+            <span>Cia<span class="brand-accent">Store</span></span>
         </a>
-        <div class="topbar-meta">
-            <span class="status-dot"></span>
-            <span>REGISTRATION WINDOW · 2026</span>
-        </div>
+        <nav class="nav-links" aria-label="Navigasi utama">
+            <a class="active" href="#katalog">Katalog</a>
+            <a href="#tentang">Tentang</a>
+            <a href="#kontak">Kontak</a>
+        </nav>
+        <div class="header-chip"><span></span> Online store</div>
     </header>
 
-    <main class="shell" id="top">
-        <section class="intro-panel" aria-labelledby="page-title">
-            <div class="intro-kicker"><span>01</span> EAD / PRACTICUM LAB</div>
-            <h1 id="page-title">Make your<br><em>next move</em><br>count.</h1>
-            <p class="intro-copy">Daftarkan diri sebagai asisten praktikum dan bantu mahasiswa lain memahami teknologi lewat pengalaman yang nyata.</p>
-
-            <div class="signal-card">
-                <div class="signal-top"><span>APPLICATION SIGNAL</span><span>● LIVE</span></div>
-                <div class="signal-line"><span class="signal-value" id="signalValue">00</span><span class="signal-label">/ 06 FIELDS READY</span></div>
-                <div class="progress-track"><span id="signalBar"></span></div>
-                <p>Lengkapi data di sebelah kanan untuk mengaktifkan kartu registrasimu.</p>
+    <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow">CIA STORE / TECHNOLOGY GOODS</p>
+                <h1 id="hero-title">Tools for your<br><em>next idea.</em></h1>
+                <p class="hero-description">Perangkat teknologi pilihan untuk membuat ruang kerja, belajar, dan berkarya terasa lebih siap.</p>
+                <a class="hero-link" href="#katalog">Jelajahi katalog <span>↗</span></a>
             </div>
-
-            <div class="intro-footer">
-                <span>Powered by HTML · CSS · PHP</span>
-                <span>v1.0 / LABPASS</span>
+            <div class="hero-object" aria-label="Featured technology products">
+                <div class="orb orb-large"></div>
+                <div class="orb orb-small"></div>
+                <div class="device-card device-back"><span>USB-C</span><strong>06</strong></div>
+                <div class="device-card device-front"><span>FEATURED / 01</span><strong>WORK<br>BETTER.</strong><small>Curated tech for everyday momentum.</small></div>
+                <div class="hero-index">01<span>/</span>06</div>
             </div>
         </section>
 
-        <section class="workspace" aria-label="Form pendaftaran asisten praktikum">
-            <div class="workspace-heading">
+        <section class="stats" aria-label="Ringkasan katalog">
+            <div><span>01</span><strong><?= $totalProducts; ?></strong><p>Total produk</p></div>
+            <div><span>02</span><strong><?= $availableProducts; ?></strong><p>Produk tersedia</p></div>
+            <div><span>03</span><strong><?= $totalStock; ?></strong><p>Total unit stok</p></div>
+            <div class="stats-note">Semua data produk disimpan dalam <b>array PHP</b> dan ditampilkan otomatis dengan perulangan.</div>
+        </section>
+
+        <section class="catalog-section" id="katalog" aria-labelledby="catalog-title">
+            <div class="section-heading">
                 <div>
-                    <p class="section-index">02 / APPLICATION FORM</p>
-                    <h2>Registration console</h2>
+                    <p class="eyebrow">02 / PRODUCT CATALOG</p>
+                    <h2 id="catalog-title">Find your<br><em>essential.</em></h2>
                 </div>
-                <span class="required-note"><b>*</b> wajib diisi</span>
+                <p class="section-note">Katalog Cia Store menampilkan nama produk, kategori, harga, jumlah stok, dan status ketersediaan.</p>
             </div>
 
-            <?php if ($success): ?>
-                <div class="success-banner" role="status">
-                    <span class="success-icon">✓</span>
-                    <div><strong>Registration locked.</strong><span>Data kamu berhasil divalidasi dan kartu registrasi siap ditinjau.</span></div>
-                </div>
-            <?php elseif ($submitted && $errors): ?>
-                <div class="error-banner" role="alert">
-                    <span class="error-icon">!</span>
-                    <div><strong>Check the signal.</strong><span>Masih ada <?= count($errors); ?> bagian yang perlu diperbaiki.</span></div>
-                </div>
-            <?php endif; ?>
-
-            <?php if (!$success): ?>
-            <form method="post" id="applicationForm" novalidate>
-                <div class="form-section">
-                    <div class="section-marker">A</div>
-                    <div class="form-section-content">
-                        <div class="form-section-title"><h3>Identity layer</h3><span>01—03</span></div>
-                        <div class="field-grid">
-                            <div class="field <?= isset($errors['nama']) ? 'has-error' : ''; ?>">
-                                <label for="nama"><span>01</span> Nama lengkap <b>*</b></label>
-                                <input id="nama" name="nama" type="text" value="<?= old('nama', $values); ?>" placeholder="Nama sesuai identitas" autocomplete="name" required>
-                                <?php if (isset($errors['nama'])): ?><small><?= e($errors['nama']); ?></small><?php endif; ?>
+            <div class="product-grid">
+                <?php foreach ($products as $index => $product): ?>
+                    <?php $available = $product['stok'] > 0; ?>
+                    <article class="product-card <?= $available ? '' : 'sold-out'; ?>">
+                        <div class="product-visual <?= e($product['aksen']); ?>">
+                            <span class="product-number">0<?= $index + 1; ?></span>
+                            <span class="product-code"><?= e($product['kode']); ?></span>
+                            <div class="product-glyph" aria-hidden="true">
+                                <i></i><i></i><i></i>
                             </div>
-                            <div class="field <?= isset($errors['nim']) ? 'has-error' : ''; ?>">
-                                <label for="nim"><span>02</span> NIM <b>*</b></label>
-                                <input id="nim" name="nim" type="text" inputmode="numeric" value="<?= old('nim', $values); ?>" placeholder="Contoh: 102042500123" required>
-                                <?php if (isset($errors['nim'])): ?><small><?= e($errors['nim']); ?></small><?php endif; ?>
+                            <?php if (!$available): ?><span class="sold-label">STOK HABIS</span><?php endif; ?>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-meta"><span><?= e($product['kategori']); ?></span><span><?= $available ? 'READY' : 'SOLD OUT'; ?></span></div>
+                            <h3><?= e($product['nama']); ?></h3>
+                            <div class="product-details">
+                                <div><span>Harga</span><strong><?= rupiah($product['harga']); ?></strong></div>
+                                <div><span>Jumlah stok</span><strong><?= $product['stok']; ?> unit</strong></div>
                             </div>
-                            <div class="field <?= isset($errors['whatsapp']) ? 'has-error' : ''; ?>">
-                                <label for="whatsapp"><span>03</span> WhatsApp <b>*</b></label>
-                                <input id="whatsapp" name="whatsapp" type="tel" value="<?= old('whatsapp', $values); ?>" placeholder="08xx atau 62xx" autocomplete="tel" required>
-                                <?php if (isset($errors['whatsapp'])): ?><small><?= e($errors['whatsapp']); ?></small><?php endif; ?>
+                            <div class="product-action">
+                                <span class="availability <?= $available ? 'is-ready' : 'is-empty'; ?>"><i></i><?= $available ? 'Tersedia' : 'Stok Habis'; ?></span>
+                                <button type="button" <?= $available ? '' : 'disabled'; ?>><?= $available ? 'Beli Sekarang ↗' : 'Tidak Tersedia'; ?></button>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </article>
+                <?php endforeach; ?>
+            </div>
+        </section>
 
-                <div class="form-section">
-                    <div class="section-marker">B</div>
-                    <div class="form-section-content">
-                        <div class="form-section-title"><h3>Placement layer</h3><span>04—05</span></div>
-                        <div class="field-grid field-grid-wide">
-                            <div class="field <?= isset($errors['email']) ? 'has-error' : ''; ?>">
-                                <label for="email"><span>04</span> Email aktif <b>*</b></label>
-                                <input id="email" name="email" type="email" value="<?= old('email', $values); ?>" placeholder="nama@kampus.ac.id" autocomplete="email" required>
-                                <?php if (isset($errors['email'])): ?><small><?= e($errors['email']); ?></small><?php endif; ?>
-                            </div>
-                            <div class="field <?= isset($errors['matkul']) ? 'has-error' : ''; ?>">
-                                <label for="matkul"><span>05</span> Mata kuliah praktikum <b>*</b></label>
-                                <select id="matkul" name="matkul" required>
-                                    <option value="">Pilih penempatan</option>
-                                    <?php foreach ($subjects as $subject): ?>
-                                        <option value="<?= e($subject); ?>" <?= $values['matkul'] === $subject ? 'selected' : ''; ?>><?= e($subject); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <?php if (isset($errors['matkul'])): ?><small><?= e($errors['matkul']); ?></small><?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-section">
-                    <div class="section-marker">C</div>
-                    <div class="form-section-content">
-                        <div class="form-section-title"><h3>Intent layer</h3><span>06 / FINAL</span></div>
-                        <div class="field <?= isset($errors['motivasi']) ? 'has-error' : ''; ?>">
-                            <label for="motivasi"><span>06</span> Kenapa kamu ingin menjadi asisten? <b>*</b></label>
-                            <textarea id="motivasi" name="motivasi" rows="4" maxlength="500" placeholder="Ceritakan cara kamu bisa membantu lab ini..." required><?= old('motivasi', $values); ?></textarea>
-                            <div class="field-meta"><span class="field-hint">Minimal 20 karakter</span><span id="charCount">0 / 500</span></div>
-                            <?php if (isset($errors['motivasi'])): ?><small><?= e($errors['motivasi']); ?></small><?php endif; ?>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="submit-row">
-                    <p>Dengan menekan submit, kamu menyatakan data yang dimasukkan sudah benar.</p>
-                    <button class="submit-button" type="submit"><span>Generate card</span><span class="button-arrow">↗</span></button>
-                </div>
-            </form>
-            <?php else: ?>
-                <div class="registration-card" id="registrationCard">
-                    <div class="card-header"><span>LABPASS / REGISTRATION CARD</span><span>2026—<?= date('md'); ?></span></div>
-                    <div class="card-body">
-                        <div class="card-symbol">LP<span>✓</span></div>
-                        <p class="card-label">CANDIDATE RECORD</p>
-                        <h3><?= old('nama', $values); ?></h3>
-                        <div class="card-grid">
-                            <div><span>NIM</span><strong><?= old('nim', $values); ?></strong></div>
-                            <div><span>PLACEMENT</span><strong><?= old('matkul', $values); ?></strong></div>
-                            <div><span>WHATSAPP</span><strong><?= old('whatsapp', $values); ?></strong></div>
-                            <div><span>EMAIL</span><strong><?= old('email', $values); ?></strong></div>
-                        </div>
-                        <div class="card-intent"><span>MOTIVATION NOTE</span><p><?= old('motivasi', $values); ?></p></div>
-                    </div>
-                    <div class="card-footer"><span>VERIFIED INPUT / PENDING REVIEW</span><span class="barcode">▌▌▌▌ ▌▌ ▌▌▌▌</span></div>
-                </div>
-                <div class="success-actions"><a href="?" class="text-button">← Buat pendaftaran baru</a><button class="outline-button" type="button" onclick="window.print()">Print card <span>↗</span></button></div>
-            <?php endif; ?>
+        <section class="about-section" id="tentang">
+            <div><p class="eyebrow">03 / CIA STORE NOTE</p><h2>Small details.<br><em>Better days.</em></h2></div>
+            <p>Cia Store adalah studi kasus katalog produk untuk latihan Pemrograman Aplikasi Web. Setiap kartu dirender dari data produk di PHP, sehingga produk tidak ditulis satu per satu secara manual pada HTML.</p>
         </section>
     </main>
 
-    <footer class="site-footer"><span>LABPASS / EAD PRACTICUM LAB</span><span>Built for a better first step.</span></footer>
-
-    <script>
-        const fields = [...document.querySelectorAll('#applicationForm input, #applicationForm select, #applicationForm textarea')];
-        const signalValue = document.getElementById('signalValue');
-        const signalBar = document.getElementById('signalBar');
-        const charCount = document.getElementById('charCount');
-        const motivation = document.getElementById('motivasi');
-
-        function updateSignal() {
-            if (!signalValue || !signalBar) return;
-            const ready = fields.filter((field) => field.value.trim() !== '').length;
-            signalValue.textContent = String(ready).padStart(2, '0');
-            signalBar.style.width = `${Math.min((ready / 6) * 100, 100)}%`;
-        }
-
-        function updateCharacters() {
-            if (charCount && motivation) charCount.textContent = `${motivation.value.length} / 500`;
-        }
-
-        fields.forEach((field) => field.addEventListener('input', updateSignal));
-        fields.forEach((field) => field.addEventListener('change', updateSignal));
-        motivation?.addEventListener('input', updateCharacters);
-        updateSignal();
-        updateCharacters();
-    </script>
+    <footer class="site-footer" id="kontak"><span>CIA STORE / PHP NATIVE STUDY CASE</span><span>Built for better everyday tools.</span></footer>
 </body>
 </html>
