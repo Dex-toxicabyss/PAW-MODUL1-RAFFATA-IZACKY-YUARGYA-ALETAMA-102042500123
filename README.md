@@ -78,7 +78,7 @@ php -S localhost:8000 -t .
 Open either project:
 
 - [Modul 1](http://localhost:8000/PAW_MODUL-1_RAFFATA%20IZACKY%20YUARGYA%20ALETAMA_102042500123/)
-- [Jurnal 1](http://localhost:8000/PAW_JURNAL-1_RAFFATA_102042500123/)
+- [Jurnal 1](http://localhost:8000/index.php?page=form)
 
 Recommended validation commands:
 
