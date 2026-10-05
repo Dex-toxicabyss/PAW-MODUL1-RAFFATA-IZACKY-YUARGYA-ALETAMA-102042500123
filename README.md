@@ -74,12 +74,6 @@ From the repository root, start PHP's built-in server:
 ```bash
 php -S localhost:8000 -t .
 ```
-
-Open either project:
-
-- [Modul 1](http://localhost:8000/)
-- [Jurnal 1](http://localhost:8000/index.php?page=form)
-
 Recommended validation commands:
 
 ```bash
