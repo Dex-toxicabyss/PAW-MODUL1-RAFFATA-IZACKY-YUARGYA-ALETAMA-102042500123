@@ -36,7 +36,7 @@ The visual treatment is intentionally different from Jurnal 1: Modul 1 uses a Ci
 - Retained input values after validation errors
 - Registration-card output with escaped user data
 - Responsive LabPass interface and print-ready card layout
-- Campus background image and Enterprise Application Development logo stored in `images/`
+- Responsive registration interface with the tracked PHP and CSS files
 
 The Jurnal 1 client-side behavior uses **Vanilla JavaScript** only: input/change event listeners update the form-readiness indicator and motivation character counter, while `window.print()` supports registration-card printing. No JavaScript framework or library is used.
 
