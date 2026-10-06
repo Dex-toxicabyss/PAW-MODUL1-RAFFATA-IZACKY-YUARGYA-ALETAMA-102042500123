@@ -59,22 +59,25 @@ PAW-MODUL1-RAFFATA-IZACKY-YUARGYA-ALETAMA-102042500123/
 │   └── style.css
 ├── PAW_JURNAL-1_RAFFATA_102042500123/
 │   ├── index.php
-│   ├── style.css
-│   └── images/
-│       ├── bg-campus.png
-│       └── logo.png
+│   └── style.css
 ├── README.md
 └── LICENSE
 ```
 
 ## Run locally
 
-From the repository root, start PHP's built-in server:
+From the repository root, use PHP 8.0+ and start the built-in server:
 
 ```bash
+php --version
 php -S localhost:8000 -t .
-php -S localhost:8001 -t .
 ```
+
+Open either project in the browser:
+
+- `http://localhost:8000/PAW_MODUL-1_RAFFATA%20IZACKY%20YUARGYA%20ALETAMA_102042500123/`
+- `http://localhost:8000/PAW_JURNAL-1_RAFFATA_102042500123/`
+
 Recommended validation commands:
 
 ```bash
