@@ -7,7 +7,7 @@ A collection of native PHP practical projects for **Pemrograman Aplikasi Web (PA
 | Project | Description | Main files |
 |---|---|---|
 | `PAW_MODUL-1_RAFFATA IZACKY YUARGYA ALETAMA_102042500123` | Cia Store product catalog built from a PHP array, with product cards, Rupiah pricing, stock status, and availability actions. | `index.php`, `style.css` |
-| `PAW_JURNAL-1_RAFFATA_102042500123` | Jurnal 1 assistant-practicum registration system with PHP validation, session storage, and a generated registration card. | `index.php`, `style.css`, `images/` |
+| `PAW_JURNAL-1_RAFFATA_102042500123` | Jurnal 1 assistant-practicum registration system with PHP validation, session storage, and a generated registration card. | `index.php`, `style.css` |
 
 ## Modul 1 — Cia Store product catalog
 
@@ -36,7 +36,6 @@ The visual treatment is intentionally different from Jurnal 1: Modul 1 uses a Ci
 - Retained input values after validation errors
 - Registration-card output with escaped user data
 - Responsive LabPass interface and print-ready card layout
-- Responsive registration interface with the tracked PHP and CSS files
 
 The Jurnal 1 client-side behavior uses **Vanilla JavaScript** only: input/change event listeners update the form-readiness indicator and motivation character counter, while `window.print()` supports registration-card printing. No JavaScript framework or library is used.
 
